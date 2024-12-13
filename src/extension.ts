@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -22,8 +23,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 		if (editor){
         const filePath = editor.document.uri.fsPath;
-	
+        const directoryPath = path.dirname(filePath);    
+        
+        terminal.sendText("cd " + directoryPath);
 		terminal.sendText("/lilypond/lilypond-2.24.4/bin/lilypond " + filePath);
+        terminal.show();
     }
     });
 
