@@ -15,7 +15,7 @@
     "commands": [
     
       {
-        "command": "extension.runLily",
+        "command": "extension.runLilypond",
         "title": "Run Lilypond"
       }
     ]
