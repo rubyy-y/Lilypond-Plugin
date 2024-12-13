@@ -21,11 +21,11 @@ export function activate(context: vscode.ExtensionContext) {
 		const editor = vscode.window.activeTextEditor;
 
 		if (editor){
-		const fileName = editor.document.fileName.split(/[/\\]/).pop();
+        const filePath = editor.document.uri.fsPath;
 	
-		terminal.sendText("/lilypond/lilypond-2.24.4/bin/lilypond " + fileName);
-		terminal.show();
-	}
+		terminal.sendText("/lilypond/lilypond-2.24.4/bin/lilypond " + filePath);
+        terminal.show();
+    }
     });
 
     context.subscriptions.push(playButton);
