@@ -27,7 +27,6 @@ export function activate(context: vscode.ExtensionContext) {
         
         terminal.sendText("cd " + directoryPath);
 		terminal.sendText("/lilypond/lilypond-2.24.4/bin/lilypond " + filePath);
-        terminal.show();
     }
     });
 
