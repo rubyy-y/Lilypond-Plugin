@@ -6,7 +6,7 @@ export function activate(context: vscode.ExtensionContext) {
     const playButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
 
     playButton.text = '$(play) Run Lilypond';
-    playButton.tooltip = 'Klicken, um LilyPond auszuführen!';
+    playButton.tooltip = 'Click to execute Lilypond';
     playButton.color = 'green';
     playButton.command = 'extension.runLilypond';
 
@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
             const directoryPath = path.dirname(filePath);
 
             if (path.extname(filePath) !== '.ly') {
-                vscode.window.showErrorMessage('Die ausgewählte Datei ist keine LilyPond-Datei (.ly)');
+                vscode.window.showErrorMessage('Selected file is not a lilypond file (.ly)');
                 return;
             }
 
@@ -34,20 +34,20 @@ export function activate(context: vscode.ExtensionContext) {
             });
 
             lilypondProcess.on('error', () => {
-                vscode.window.showErrorMessage('LilyPond konnte nicht ausgeführt werden. Überprüfen Sie den Pfad.');
+                vscode.window.showErrorMessage('LilyPond could not be executed. Please check the path.');
             });
 
             lilypondProcess.on('close', (code) => {
                 if (code === 0) {
-                    vscode.window.showInformationMessage('LilyPond wird ausgeführt!');
+                    vscode.window.showInformationMessage('Executing LilyPond!');
                 } else {
-                    vscode.window.showErrorMessage('Ein Fehler ist aufgetreten. LilyPond konnte nicht abgeschlossen werden.');
+                    vscode.window.showErrorMessage('Error. Lilypond could not be executed.');
                 }
             });
 
             lilypondProcess.unref();
         } else {
-            vscode.window.showErrorMessage('Kein aktiver Editor gefunden. Öffnen Sie eine LilyPond-Datei!');
+            vscode.window.showErrorMessage('No open editor found. Open a Lilypond file!');
         }
     });
 
